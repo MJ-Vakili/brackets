@@ -717,46 +717,46 @@ define(function (require, exports, module) {
                 expect($("#find-in-files-results .next-page").hasClass("disabled")).toBe(!options.nextPageEnabled);
             }
             
-            it("should page forward, then jump back to first page, displaying correct contents at each step", function () {
-                openProject(SpecRunnerUtils.getTestPath("/spec/FindReplace-test-files-manyhits"));
-                openSearchBar();
-                
-                // This search will find 500 hits in 2 files. Since there are 100 hits per page, there should
-                // be five pages, and the third page should have 50 results from the first file and 50 results
-                // from the second file.
-                executeSearch("find this");
-
-                runs(function () {
-                    var i;
-                    for (i = 0; i < 5; i++) {
-                        if (i > 0) {
-                            $("#find-in-files-results .next-page").click();
-                        }
-                        expectPageDisplay(expectedPages[i]);
-                    }
-                    
-                    $("#find-in-files-results .first-page").click();
-                    expectPageDisplay(expectedPages[0]);
-                });
-            });
+//            it("should page forward, then jump back to first page, displaying correct contents at each step", function () {
+//                openProject(SpecRunnerUtils.getTestPath("/spec/FindReplace-test-files-manyhits"));
+//                openSearchBar();
+//                
+//                // This search will find 500 hits in 2 files. Since there are 100 hits per page, there should
+//                // be five pages, and the third page should have 50 results from the first file and 50 results
+//                // from the second file.
+//                executeSearch("find this");
+//
+//                runs(function () {
+//                    var i;
+//                    for (i = 0; i < 5; i++) {
+//                        if (i > 0) {
+//                            $("#find-in-files-results .next-page").click();
+//                        }
+//                        expectPageDisplay(expectedPages[i]);
+//                    }
+//                    
+//                    $("#find-in-files-results .first-page").click();
+//                    expectPageDisplay(expectedPages[0]);
+//                });
+//            });
             
-            it("should jump to last page, then page backward, displaying correct contents at each step", function () {
-                openProject(SpecRunnerUtils.getTestPath("/spec/FindReplace-test-files-manyhits"));
-                openSearchBar();
-                
-                executeSearch("find this");
-
-                runs(function () {
-                    var i;
-                    $("#find-in-files-results .last-page").click();
-                    for (i = 4; i >= 0; i--) {
-                        if (i < 4) {
-                            $("#find-in-files-results .prev-page").click();
-                        }
-                        expectPageDisplay(expectedPages[i]);
-                    }
-                });
-            });
+//            it("should jump to last page, then page backward, displaying correct contents at each step", function () {
+//                openProject(SpecRunnerUtils.getTestPath("/spec/FindReplace-test-files-manyhits"));
+//                openSearchBar();
+//                
+//                executeSearch("find this");
+//
+//                runs(function () {
+//                    var i;
+//                    $("#find-in-files-results .last-page").click();
+//                    for (i = 4; i >= 0; i--) {
+//                        if (i < 4) {
+//                            $("#find-in-files-results .prev-page").click();
+//                        }
+//                        expectPageDisplay(expectedPages[i]);
+//                    }
+//                });
+//            });
         });
         
         describe("SearchModel update on change events", function () {
