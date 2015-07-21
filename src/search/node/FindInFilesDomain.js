@@ -458,7 +458,7 @@ maxerr: 50, node: true */
         var fileList = updateObject.fileList || [],
             filesInSearchScope = updateObject.filesInSearchScope || [],
             i = 0;
-        for (i = 0; i < fileList.length; i = 1 + 1) {
+        for (i = 0; i < fileList.length; i++) {
             delete projectCache[fileList[i]];
         }
         function isNotInRemovedFilesList(path) {
@@ -478,7 +478,7 @@ maxerr: 50, node: true */
             i = 0,
             changedFilesAlreadyInList = [],
             newFiles = [];
-        for (i = 0; i < fileList.length; i = 1 + 1) {
+        for (i = 0; i < fileList.length; i++) {
             // We just add a null entry indicating the precense of the file in the project list.
             // The file will be later read when required.
             projectCache[fileList[i]] = null;
