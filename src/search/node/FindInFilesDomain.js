@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Adobe Systems Incorporated. All rights reserved.
+ * Copyright (c) 2015 Adobe Systems Incorporated. All rights reserved.
  *  
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"), 
@@ -325,12 +325,11 @@ maxerr: 50, node: true */
             return;
         }
         var i = 0;
-        for (i = 0; i < 10 && currentCrawlIndex < files.length; i = i + 1) {
+        for (i = 0; i < 10 && currentCrawlIndex < files.length; i++) {
             getFileContentsForFile(files[currentCrawlIndex]);
             currentCrawlIndex++;
         }
         if (currentCrawlIndex < files.length) {
-            console.log("crawling scheduled");
             crawlComplete = false;
             setImmediate(fileCrawler);
         } else {
@@ -349,7 +348,6 @@ maxerr: 50, node: true */
      * @param   {array} fileList an array of files
      */
     function initCache(fileList) {
-        console.log("cache change");
         files = fileList;
         currentCrawlIndex = 0;
         clearProjectCache();
@@ -367,10 +365,6 @@ maxerr: 50, node: true */
             return 0;
         }
         var matches = contents.match(queryExpr);
-        if (matches && isNaN(matches.length)) {
-            console.log('contents for nan' + contents);
-            console.log(JSON.stringify(matches));
-        }
         return matches ? matches.length : 0;
     }
 
@@ -381,7 +375,6 @@ maxerr: 50, node: true */
      * @returns {Number} total number of matches
      */
     function getNumMatches(fileList, queryExpr) {
-        console.log('getNumatches');
         var i,
             matches = 0;
         for (i = 0; i < fileList.length; i++) {
@@ -395,7 +388,6 @@ maxerr: 50, node: true */
                 break;
             }
         }
-        console.log('for completed' + matches);
         return matches;
     }
 
@@ -406,7 +398,6 @@ maxerr: 50, node: true */
      * @returns {Object}   search results
      */
     function doSearch(searchObject, nextPages) {
-        console.log("doSearch");
         
         savedSearchObject = searchObject;
         if (!files) {
@@ -446,7 +437,6 @@ maxerr: 50, node: true */
         if (searchObject.getAllResults) {
             send_object.allResultsAvailable = true;
         }
-        console.log("returning " + numMatches + "results");
         return send_object;
     }
     
